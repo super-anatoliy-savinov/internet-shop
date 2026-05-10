@@ -80,11 +80,10 @@ EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 CELERY_BROKER_URL = os.environ.get('REDIS_URL')
 CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL')
 
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51TUSDk3xkx12EQwWnTezkupY1bWT043AEeyNs2bNmGtgOhR7H6zFmYTq8cJ6omaUMpPrOpmFERUlYSxapeCZClAJ00UDiirZxV'
-STRIPE_SECRET_KEY = 'sk_test_51TUSDk3xkx12EQwWcE6tQZdTZG7GSlq04DcqLVw4JnhPY0Wz8Nr19XdS5zFKJZVizzYdey2ulfdtVYVlG3VV13Rw00ihUui85o'
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY', '')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_API_VERSION = '2026-04-22.dahlia'
-STRIPE_WEBHOOK_SECRET = 'whsec_612c3d816cb4b4218d12bb48c902cf67ea2a09b89bf0dcb9dabb1cafb88183e2'
-
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 # настроечные параметры Redis
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
