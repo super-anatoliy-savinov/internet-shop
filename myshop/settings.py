@@ -11,13 +11,15 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
 from pathlib import Path
+from urllib.parse import urlparse
 
 import dj_database_url
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+redis_url = os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379/1')
+url = urlparse(redis_url)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -85,8 +87,9 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_API_VERSION = '2026-04-22.dahlia'
 STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 # настроечные параметры Redis
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
+REDIS_HOST = url.hostname
+REDIS_PORT = url.port
+REDIS_PASSWORD = url.password  # Пароль важен для Upstash!
 REDIS_DB = 1
 
 TEMPLATES = [
