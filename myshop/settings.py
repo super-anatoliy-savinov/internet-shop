@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-wh5$+-e2_udm68_c$fn5c1_w%9f)i#1xasg8c#$!^t*)+*(noh
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1',
-                 'https://internet-shop-8nlf.onrender.com']
+                 'internet-shop-8nlf.onrender.com']
 
 
 
