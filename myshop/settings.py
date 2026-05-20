@@ -15,6 +15,7 @@ from urllib.parse import urlparse
 
 import dj_database_url
 from django.utils.translation import gettext_lazy as _
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +29,7 @@ url = urlparse(redis_url)
 SECRET_KEY = 'django-insecure-wh5$+-e2_udm68_c$fn5c1_w%9f)i#1xasg8c#$!^t*)+*(noh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1',
                  'internet-shop-8nlf.onrender.com']
@@ -73,23 +74,18 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CART_SESSION_ID = 'cart'
 
 EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
-CELERY_BROKER_URL = os.environ.get('REDIS_URL')
-CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL')
-
-STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY', '')
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
+STRIPE_PUBLISHABLE_KEY ='pk_test_51TUSDk3xkx12EQwWnTezkupY1bWT043AEeyNs2bNmGtgOhR7H6zFmYTq8cJ6omaUMpPrOpmFERUlYSxapeCZClAJ00UDiirZxV'
+STRIPE_SECRET_KEY ='sk_test_51TUSDk3xkx12EQwWcE6tQZdTZG7GSlq04DcqLVw4JnhPY0Wz8Nr19XdS5zFKJZVizzYdey2ulfdtVYVlG3VV13Rw00ihUui85o'
 STRIPE_API_VERSION = '2026-04-22.dahlia'
-STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
+STRIPE_WEBHOOK_SECRET ='whsec_612c3d816cb4b4218d12bb48c902cf67ea2a09b89bf0dcb9dabb1cafb88183e2'
 # настроечные параметры Redis
-REDIS_HOST = url.hostname
-REDIS_PORT = url.port
-REDIS_PASSWORD = url.password  # Пароль важен для Upstash!
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
 REDIS_DB = 1
 
 TEMPLATES = [
@@ -115,10 +111,10 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600
-    )
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "db.sqlite3",
+    }
 }
 
 # Password validation
