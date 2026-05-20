@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
 from pathlib import Path
-from urllib.parse import urlparse
+
 
 import dj_database_url
 from django.utils.translation import gettext_lazy as _
@@ -19,8 +19,7 @@ from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-redis_url = os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379/1')
-url = urlparse(redis_url)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -79,10 +78,10 @@ CART_SESSION_ID = 'cart'
 
 EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
-STRIPE_PUBLISHABLE_KEY ='pk_test_51TUSDk3xkx12EQwWnTezkupY1bWT043AEeyNs2bNmGtgOhR7H6zFmYTq8cJ6omaUMpPrOpmFERUlYSxapeCZClAJ00UDiirZxV'
-STRIPE_SECRET_KEY ='sk_test_51TUSDk3xkx12EQwWcE6tQZdTZG7GSlq04DcqLVw4JnhPY0Wz8Nr19XdS5zFKJZVizzYdey2ulfdtVYVlG3VV13Rw00ihUui85o'
-STRIPE_API_VERSION = '2026-04-22.dahlia'
-STRIPE_WEBHOOK_SECRET ='whsec_612c3d816cb4b4218d12bb48c902cf67ea2a09b89bf0dcb9dabb1cafb88183e2'
+# STRIPE_PUBLISHABLE_KEY =''
+# STRIPE_SECRET_KEY =''
+# STRIPE_API_VERSION = '2026-04-22.dahlia'
+# STRIPE_WEBHOOK_SECRET =''
 # настроечные параметры Redis
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
